@@ -1,0 +1,100 @@
+.page-wrap { min-height: 100%; }
+
+.app-header {
+  background: #187872;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-title { font-size: 17px; font-weight: 500; color: white; }
+
+.content { padding: 16px; }
+
+.form-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.form-group { margin-bottom: 16px; }
+.form-group label { font-size: 13px; font-weight: 500; color: #475569; display: block; margin-bottom: 6px; }
+.req { color: #DC2626; }
+.optional { color: #94A3B8; font-weight: 400; }
+
+.inp-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  background: #F8FAFC;
+  padding: 0 12px;
+  transition: 0.2s;
+  &:focus-within { border-color: #187872; background: white; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+}
+
+.amount-wrap { padding: 0 12px; }
+.currency { font-size: 16px; font-weight: 600; color: #187872; margin-left: 8px; flex-shrink: 0; }
+
+.text-inp {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  color: #0F172A;
+  padding: 12px 0;
+  outline: none;
+  text-align: right;
+  direction: rtl;
+  width: 100%;
+}
+
+.amount-inp { font-size: 22px; font-weight: 600; }
+
+.error-msg { color: #DC2626; font-size: 13px; text-align: center; margin: 0 0 12px; }
+
+.btn-save {
+  width: 100%;
+  padding: 14px;
+  background: #187872;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s;
+  margin-top: 8px;
+  &:hover { background: #1D4ED8; }
+  ion-icon { font-size: 18px; }
+}
+
+.success-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  background: #F0FDF4;
+  color: #16A34A;
+  border: 1px solid #BBF7D0;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+  animation: fadeIn 0.3s ease;
+  ion-icon { font-size: 20px; }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }

@@ -1,0 +1,32 @@
+.page-wrap { min-height: 100%; }
+.app-header { background: #187872; padding: 16px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 100; }
+.header-title { font-size: 17px; font-weight: 500; color: white; }
+.content { padding: 16px; }
+.form-card { background: white; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+.card-title { font-size: 14px; font-weight: 600; color: #0F172A; margin: 0 0 16px; }
+.form-group { margin-bottom: 12px; }
+.form-group label { font-size: 12px; font-weight: 500; color: #475569; display: block; margin-bottom: 5px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.inp-wrap { border: 1px solid #E2E8F0; border-radius: 8px; background: #F8FAFC; padding: 0 10px; &:focus-within { border-color: #187872; background: white; } }
+.text-inp { width: 100%; border: none; background: transparent; font-family: 'Tajawal', sans-serif; font-size: 14px; color: #0F172A; padding: 10px 0; outline: none; text-align: right; direction: rtl; }
+.error-msg { color: #DC2626; font-size: 12px; margin: 0 0 10px; }
+.btn-add { width: 100%; padding: 12px; background: #187872; color: white; border: none; border-radius: 10px; font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; ion-icon { font-size: 18px; } }
+.section-header { font-size: 13px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.empty-state { text-align: center; padding: 40px; color: #94A3B8; ion-icon { font-size: 48px; display: block; margin-bottom: 10px; } p { font-size: 14px; } }
+.cat-list { display: flex; flex-direction: column; gap: 8px; }
+.cat-row { display: flex; align-items: center; gap: 12px; background: white; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px 14px; transition: 0.15s; &:hover { border-color: #187872; } }
+.cat-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.cat-info { flex: 1; }
+.cat-name { font-size: 14px; color: #94A3B8; font-weight: 500; margin: 0 0 2px; }
+.cat-count { font-size: 12px; color: #94A3B8; margin: 0; }
+.cat-actions { display: flex; gap: 6px; }
+.act-btn { width: 32px; height: 32px; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; &.edit { background: #EFF6FF; color: #187872; } &.del { background: #FEF2F2; color: #DC2626; } }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: flex-end; z-index: 1000; animation: fadeIn 0.2s ease;   margin-bottom: 15%;}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal-sheet { background: white; border-radius: 20px 20px 0 0; width: 100%; padding: 20px; animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1); }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.modal-handle { width: 40px; height: 4px; background: #E2E8F0; border-radius: 2px; margin: 0 auto 20px; }
+.modal-title { font-size: 17px; font-weight: 600; margin: 0 0 20px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 16px; }
+.btn-cancel { flex: 1; padding: 12px; border: 1px solid #E2E8F0; border-radius: 10px; background: white; font-family: 'Tajawal', sans-serif; font-size: 14px; cursor: pointer;   color: #0F172A;}
+.btn-save { flex: 2; padding: 12px; background: #187872; color: white; border: none; border-radius: 10px; font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }

@@ -1,0 +1,109 @@
+<div class="page-wrap">
+
+  <!-- Header -->
+  <div class="app-header">
+    <span class="logo-dot"></span>
+    <span class="header-title">مصاريفي</span>
+    <button class="logout-btn" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </button>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-section">
+    <div class="main-card">
+      <p class="mc-label">إجمالي {{ currentMonthLabel }}</p>
+      <p class="mc-value">{{ storage.fmt(currentMonthTotal) }}</p>
+      <p class="mc-sub">{{ currentMonthCount }} عملية مسجلة</p>
+    </div>
+
+    <div class="mini-grid">
+      <div class="mini-card">
+        <ion-icon name="trending-up-outline"></ion-icon>
+        <p class="mini-label">أنواع الصرف</p>
+        <p class="mini-val">{{ catCount }}</p>
+      </div>
+      <div class="mini-card">
+        <ion-icon name="receipt-outline"></ion-icon>
+        <p class="mini-label">إجمالي الكل</p>
+        <p class="mini-val">{{ storage.fmt(allTotal) }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent -->
+  <div class="section-header">آخر العمليات</div>
+
+  <div class="empty-state" *ngIf="recent.length === 0">
+    <ion-icon name="receipt-outline"></ion-icon>
+    <p>لا توجد مصاريف مسجلة بعد</p>
+    <button class="btn-outline" (click)="openModal()">
+      <ion-icon name="add-outline"></ion-icon>
+      أضف أول مصروف
+    </button>
+  </div>
+
+  <div class="list-card" *ngIf="recent.length > 0">
+    <div class="exp-row" *ngFor="let exp of recent">
+      <div class="exp-icon" [style.background]="getColorBg(exp.catId)" [style.color]="getColorText(exp.catId)">
+        <ion-icon [name]="getCatIcon(exp.catId)"></ion-icon>
+      </div>
+      <div class="exp-info">
+        <p class="exp-name">{{ getCatName(exp.catId) }}</p>
+        <p class="exp-date">{{ formatDate(exp.date) }}<span *ngIf="exp.note"> · {{ exp.note }}</span></p>
+      </div>
+      <p class="exp-amount">{{ storage.fmt(exp.amount) }}</p>
+    </div>
+  </div>
+
+  <!-- FAB -->
+  <button class="fab-btn" (click)="openModal()">
+    <ion-icon name="add-outline"></ion-icon>
+  </button>
+
+  <!-- Modal إضافة سريعة -->
+  <div class="modal-overlay" *ngIf="modalOpen" (click)="modalOpen = false">
+    <div class="modal-sheet" (click)="$event.stopPropagation()">
+      <div class="modal-handle"></div>
+      <h3 class="modal-title">إضافة مصروف</h3>
+
+      <div class="form-group">
+        <label>قيمة الصرف</label>
+        <div class="inp-wrap">
+          <input type="number" [(ngModel)]="form.amount" placeholder="0.00" class="text-inp">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>التاريخ</label>
+        <div class="inp-wrap">
+          <input type="date" [(ngModel)]="form.date" class="text-inp">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>نوع الصرف</label>
+        <div class="inp-wrap">
+          <select [(ngModel)]="form.catId" class="text-inp">
+            <option value="">-- اختر --</option>
+            <option *ngFor="let cat of cats" [value]="cat.id">{{ cat.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ملاحظة (اختياري)</label>
+        <div class="inp-wrap">
+          <input type="text" [(ngModel)]="form.note" placeholder="وصف مختصر..." class="text-inp">
+        </div>
+      </div>
+
+      <p class="form-error" *ngIf="formError">{{ formError }}</p>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="modalOpen = false">إلغاء</button>
+        <button class="btn-save" (click)="saveExpense()">
+          <ion-icon name="checkmark-outline"></ion-icon> حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

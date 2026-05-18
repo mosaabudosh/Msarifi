@@ -1,0 +1,7 @@
+{
+  "name": "msarifi-new",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

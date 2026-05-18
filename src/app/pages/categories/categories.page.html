@@ -1,0 +1,126 @@
+<div class="page-wrap">
+
+  <div class="app-header">
+    <span class="header-title">أنواع الصرف</span>
+  </div>
+
+  <div class="content">
+
+    <!-- إضافة نوع جديد -->
+    <div class="form-card">
+      <p class="card-title">إضافة نوع صرف جديد</p>
+
+      <div class="form-group">
+        <label>الاسم</label>
+        <div class="inp-wrap">
+          <input type="text" [(ngModel)]="newName" placeholder="مثال: طعام، مواصلات..." class="text-inp">
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="form-group">
+          <label>الأيقونة</label>
+          <div class="inp-wrap">
+            <select [(ngModel)]="newIcon" class="text-inp">
+              <option *ngFor="let ic of icons" [value]="ic.value">{{ ic.label }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>اللون</label>
+          <div class="inp-wrap">
+            <select [(ngModel)]="newColor" class="text-inp">
+              <option value="blue">🔵 أزرق</option>
+              <option value="green">🟢 أخضر</option>
+              <option value="red">🔴 أحمر</option>
+              <option value="orange">🟠 برتقالي</option>
+              <option value="purple">🟣 بنفسجي</option>
+              <option value="teal">🔵 فيروزي</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <p class="error-msg" *ngIf="addError">{{ addError }}</p>
+
+      <button class="btn-add" (click)="addCategory()">
+        <ion-icon name="add-outline"></ion-icon>
+        إضافة النوع
+      </button>
+    </div>
+
+    <!-- قائمة الأنواع -->
+    <p class="section-header">الأنواع المسجلة ({{ cats.length }})</p>
+
+    <div class="empty-state" *ngIf="cats.length === 0">
+      <ion-icon name="pricetag-outline"></ion-icon>
+      <p>لا توجد أنواع مضافة</p>
+    </div>
+
+    <div class="cat-list">
+      <div class="cat-row" *ngFor="let cat of cats">
+        <div class="cat-icon" [style.background]="getColorBg(cat)" [style.color]="getColorText(cat)">
+          <ion-icon [name]="cat.icon"></ion-icon>
+        </div>
+        <div class="cat-info">
+          <p class="cat-name">{{ cat.name }}</p>
+          <p class="cat-count">{{ getCount(cat.id) }} عملية</p>
+        </div>
+        <div class="cat-actions">
+          <button class="act-btn edit" (click)="openEdit(cat)">
+            <ion-icon name="create-outline"></ion-icon>
+          </button>
+          <button class="act-btn del" (click)="deleteCategory(cat)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 80px;"></div>
+  </div>
+
+  <!-- Modal التعديل -->
+  <div class="modal-overlay" *ngIf="editOpen" (click)="editOpen = false">
+    <div class="modal-sheet" (click)="$event.stopPropagation()">
+      <div class="modal-handle"></div>
+      <h3 class="modal-title">تعديل نوع الصرف</h3>
+
+      <div class="form-group">
+        <label>الاسم</label>
+        <div class="inp-wrap"><input type="text" [(ngModel)]="editName" class="text-inp"></div>
+      </div>
+      <div class="two-col">
+        <div class="form-group">
+          <label>الأيقونة</label>
+          <div class="inp-wrap">
+            <select [(ngModel)]="editIcon" class="text-inp">
+              <option *ngFor="let ic of icons" [value]="ic.value">{{ ic.label }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>اللون</label>
+          <div class="inp-wrap">
+            <select [(ngModel)]="editColor" class="text-inp">
+              <option value="blue">🔵 أزرق</option>
+              <option value="green">🟢 أخضر</option>
+              <option value="red">🔴 أحمر</option>
+              <option value="orange">🟠 برتقالي</option>
+              <option value="purple">🟣 بنفسجي</option>
+              <option value="teal">🩵 فيروزي</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="editOpen = false">إلغاء</button>
+        <button class="btn-save" (click)="saveEdit()">
+          <ion-icon name="checkmark-outline"></ion-icon> حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

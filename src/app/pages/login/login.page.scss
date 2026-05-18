@@ -1,0 +1,152 @@
+.login-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 24px;
+  gap: 24px;
+  background: linear-gradient(160deg, #EFF6FF 0%, #F1F5F9 60%);
+}
+
+.login-logo {
+  width: 160px;
+  height: 160px;
+  // background: #187872;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+
+  ion-icon {
+    font-size: 36px;
+    color: white;
+  }
+}
+
+.login-title {
+  text-align: center;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0 0 6px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #475569;
+    margin: 0;
+  }
+}
+
+.login-card {
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  background: #F8FAFC;
+  padding: 0 12px;
+  transition: all 0.2s;
+
+  &:focus-within {
+    border-color: #187872;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  &.error {
+    border-color: #DC2626;
+  }
+}
+
+.inp-icon {
+  font-size: 18px;
+  color: #94A3B8;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.text-inp {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  color: #0F172A;
+  padding: 12px 0;
+  text-align: right;
+  direction: rtl;
+}
+
+.eye-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0 8px 4px;
+  color: #94A3B8;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #DC2626;
+  margin: 6px 0 0;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: #187872;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
+
+  &:hover { background: #1D4ED8; }
+  &:disabled { opacity: 0.7; cursor: not-allowed; }
+
+  ion-icon { font-size: 18px; }
+}
+
+.hint {
+  text-align: center;
+  font-size: 12px;
+  color: #94A3B8;
+  margin: 14px 0 0;
+}

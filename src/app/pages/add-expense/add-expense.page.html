@@ -1,0 +1,56 @@
+<div class="page-wrap">
+
+  <div class="app-header">
+    <span class="header-title">إضافة مصروف</span>
+  </div>
+
+  <div class="content">
+    <div class="form-card">
+
+      <div class="form-group">
+        <label>قيمة الصرف <span class="req">*</span></label>
+        <div class="inp-wrap amount-wrap">
+          <span class="currency">JD</span>
+          <input type="number" [(ngModel)]="amount" placeholder="0.00" class="text-inp amount-inp">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>التاريخ <span class="req">*</span></label>
+        <div class="inp-wrap">
+          <input type="date" [(ngModel)]="date" class="text-inp">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>نوع الصرف <span class="req">*</span></label>
+        <div class="inp-wrap">
+          <select [(ngModel)]="catId" class="text-inp">
+            <option value="">-- اختر نوع الصرف --</option>
+            <option *ngFor="let cat of cats" [value]="cat.id">{{ cat.name }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ملاحظة <span class="optional">(اختياري)</span></label>
+        <div class="inp-wrap">
+          <input type="text" [(ngModel)]="note" placeholder="وصف مختصر للمصروف..." class="text-inp">
+        </div>
+      </div>
+
+      <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+      <button class="btn-save" (click)="save()">
+        <ion-icon name="add-outline"></ion-icon>
+        إضافة المصروف
+      </button>
+    </div>
+
+    <div class="success-banner" *ngIf="showSuccess">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      تم إضافة المصروف بنجاح!
+    </div>
+  </div>
+
+</div>

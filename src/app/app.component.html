@@ -1,0 +1,30 @@
+<ion-app>
+
+  <!-- شاشة تسجيل الدخول -->
+  <ng-container *ngIf="!auth.loggedIn()">
+    <app-login></app-login>
+  </ng-container>
+
+  <!-- التطبيق الرئيسي -->
+  <ng-container *ngIf="auth.loggedIn()">
+
+    <!-- محتوى الصفحات -->
+    <div class="page-content">
+      <app-home *ngIf="nav.currentPage() === 'home'"></app-home>
+      <app-add-expense *ngIf="nav.currentPage() === 'add'"></app-add-expense>
+      <app-expense-list *ngIf="nav.currentPage() === 'list'"></app-expense-list>
+      <app-categories *ngIf="nav.currentPage() === 'categories'"></app-categories>
+      <app-settings *ngIf="nav.currentPage() === 'settings'"></app-settings>
+    </div>
+
+    <!-- شريط التبويبات -->
+    <div class="tab-bar">
+      <button *ngFor="let tab of tabs" class="tab-btn" [class.active]="isActive(tab.id)" (click)="go(tab.id)">
+        <ion-icon [name]="tab.icon"></ion-icon>
+        <span>{{ tab.label }}</span>
+      </button>
+    </div>
+
+  </ng-container>
+
+</ion-app>

@@ -1,0 +1,81 @@
+<div class="page-wrap">
+
+  <div class="app-header">
+    <span class="header-title">الإعدادات</span>
+  </div>
+
+  <div class="content">
+
+    <!-- تغيير كلمة المرور -->
+    <p class="section-header">الأمان</p>
+    <div class="settings-card">
+      <div class="card-title">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        تغيير كلمة المرور
+      </div>
+
+      <div class="form-group">
+        <label>كلمة المرور الحالية</label>
+        <div class="inp-wrap">
+          <input [type]="showOld ? 'text' : 'password'" [(ngModel)]="oldPwd" placeholder="أدخل كلمة المرور الحالية" class="text-inp">
+          <button class="eye-btn" (click)="showOld = !showOld">
+            <ion-icon [name]="showOld ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>كلمة المرور الجديدة</label>
+        <div class="inp-wrap">
+          <input [type]="showNew ? 'text' : 'password'" [(ngModel)]="newPwd" placeholder="4 أحرف على الأقل" class="text-inp">
+          <button class="eye-btn" (click)="showNew = !showNew">
+            <ion-icon [name]="showNew ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label>تأكيد كلمة المرور</label>
+        <div class="inp-wrap">
+          <input [type]="showConf ? 'text' : 'password'" [(ngModel)]="confPwd" placeholder="أعد الإدخال" class="text-inp">
+          <button class="eye-btn" (click)="showConf = !showConf">
+            <ion-icon [name]="showConf ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="msg-banner" *ngIf="pwdMsg" [class.success]="pwdSuccess" [class.error]="!pwdSuccess">
+        {{ pwdMsg }}
+      </div>
+
+      <button class="btn-primary" (click)="changePwd()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+        حفظ التغييرات
+      </button>
+    </div>
+
+    <!-- إدارة البيانات -->
+    <p class="section-header">إدارة البيانات</p>
+    <div class="settings-card">
+      <button class="btn-outline" (click)="exportData()" style="margin-bottom: 10px;">
+        <ion-icon name="download-outline"></ion-icon>
+        تصدير البيانات (JSON)
+      </button>
+      <button class="btn-danger" (click)="clearAll()">
+        <ion-icon name="trash-outline"></ion-icon>
+        حذف جميع المصاريف
+      </button>
+    </div>
+
+    <!-- عن التطبيق -->
+    <div class="about-card">
+      <div class="about-icon">💳</div>
+      <p class="about-name">مصاريفي</p>
+      <p class="about-version">الإصدار 1.0.0</p>
+      <p class="about-desc">تطبيق Ionic Angular لإدارة المصاريف الشخصية</p>
+    </div>
+
+    <div style="height: 80px;"></div>
+  </div>
+
+</div>

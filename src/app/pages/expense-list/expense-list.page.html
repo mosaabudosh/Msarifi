@@ -1,0 +1,137 @@
+<div class="page-wrap">
+
+  <div class="app-header">
+    <span class="header-title">سجل المصاريف</span>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="search-wrap">
+      <ion-icon name="search-outline" class="search-icon"></ion-icon>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="applyFilter()"
+        placeholder="بحث بالقيمة أو التاريخ أو النوع..."
+        class="search-inp"
+      />
+      <button *ngIf="searchQuery" class="clear-btn" (click)="searchQuery=''; applyFilter()">✕</button>
+    </div>
+
+    <div class="sort-row">
+      <button class="sort-btn" [class.active]="sortOrder === 'desc'" (click)="setSort('desc')">
+        <ion-icon name="arrow-down-outline"></ion-icon> أحدث أولاً
+      </button>
+      <button class="sort-btn" [class.active]="sortOrder === 'asc'" (click)="setSort('asc')">
+        <ion-icon name="arrow-up-outline"></ion-icon> أقدم أولاً
+      </button>
+    </div>
+  </div>
+
+  <!-- Empty -->
+  <div class="empty-state" *ngIf="monthGroups.length === 0">
+    <ion-icon name="cash-outline"></ion-icon>
+    <p>{{ searchQuery ? 'لا توجد نتائج للبحث' : 'لا توجد مصاريف مسجلة' }}</p>
+  </div>
+
+  <!-- Month Groups -->
+  <div class="month-group" *ngFor="let group of monthGroups">
+
+    <div class="month-hdr" (click)="toggleGroup(group.monthKey)">
+      <div class="mhdr-right">
+        <span class="mhdr-name">{{ group.monthLabel }}</span>
+        <span class="mhdr-count">{{ group.expenses.length }} عملية</span>
+      </div>
+      <div class="mhdr-left">
+        <span class="mhdr-total">{{ storage.fmt(group.total) }}</span>
+        <ion-icon [name]="isCollapsed(group.monthKey) ? 'chevron-down-outline' : 'chevron-up-outline'"></ion-icon>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!isCollapsed(group.monthKey)">
+
+      <!-- إضافة لهذا الشهر -->
+      <button class="quick-add-btn" (click)="openAdd(group.monthKey)">
+        <ion-icon name="add-outline"></ion-icon>
+        إضافة لـ {{ group.monthLabel }}
+      </button>
+
+      <div class="exp-list-card">
+        <div class="exp-row" *ngFor="let exp of group.expenses">
+          <div class="exp-icon" [style.background]="getColorBg(exp.catId)" [style.color]="getColorText(exp.catId)">
+            <ion-icon [name]="getCatIcon(exp.catId)"></ion-icon>
+          </div>
+          <div class="exp-info">
+            <p class="exp-name">{{ getCatName(exp.catId) }}</p>
+            <p class="exp-meta">{{ formatDate(exp.date) }}<span *ngIf="exp.note"> · {{ exp.note }}</span></p>
+          </div>
+          <div class="exp-right">
+            <p class="exp-amount">{{ storage.fmt(exp.amount) }}</p>
+            <div class="exp-actions">
+              <button class="act-btn edit" (click)="openEdit(exp)">
+                <ion-icon name="create-outline"></ion-icon>
+              </button>
+              <button class="act-btn del" (click)="deleteExpense(exp.id)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-total-row">
+          <span>مجموع {{ group.monthLabel }}</span>
+          <span class="total-val">{{ storage.fmt(group.total) }}</span>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+
+  <!-- FAB -->
+  <button class="fab-btn" (click)="openAdd()">
+    <ion-icon name="add-outline"></ion-icon>
+  </button>
+
+  <div style="height: 80px;"></div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" *ngIf="modalOpen" (click)="modalOpen = false">
+    <div class="modal-sheet" (click)="$event.stopPropagation()">
+      <div class="modal-handle"></div>
+      <h3 class="modal-title">{{ editingId ? 'تعديل المصروف' : 'إضافة مصروف' }}</h3>
+
+      <div class="form-group">
+        <label>قيمة الصرف</label>
+        <div class="inp-wrap"><input type="number" [(ngModel)]="mForm.amount" placeholder="0.00" class="text-inp"></div>
+      </div>
+      <div class="form-group">
+        <label>التاريخ</label>
+        <div class="inp-wrap"><input type="date" [(ngModel)]="mForm.date" class="text-inp"></div>
+      </div>
+      <div class="form-group">
+        <label>نوع الصرف</label>
+        <div class="inp-wrap">
+          <select [(ngModel)]="mForm.catId" class="text-inp">
+            <option value="">-- اختر --</option>
+            <option *ngFor="let cat of cats" [value]="cat.id">{{ cat.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ملاحظة</label>
+        <div class="inp-wrap"><input type="text" [(ngModel)]="mForm.note" placeholder="وصف مختصر..." class="text-inp"></div>
+      </div>
+
+      <p class="form-error" *ngIf="mFormError">{{ mFormError }}</p>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="modalOpen = false">إلغاء</button>
+        <button class="btn-save" (click)="saveModal()">
+          <ion-icon name="checkmark-outline"></ion-icon>
+          {{ editingId ? 'تحديث' : 'حفظ' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
