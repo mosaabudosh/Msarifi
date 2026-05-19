@@ -33,6 +33,7 @@ export class StorageService {
   // ── Auth ────────────────────────────────────────────────────────
   checkPassword(pwd: string): boolean { return pwd === this.data.password; }
   changePassword(newPwd: string): void { this.data.password = newPwd; this.save(); }
+  checkIfHavePassword(): boolean { return this.data.password === '1234'; }
 
   // ── Categories ──────────────────────────────────────────────────
   getCategories(): Category[] { return [...this.data.categories]; }

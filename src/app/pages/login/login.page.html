@@ -1,17 +1,14 @@
 <div class="login-screen">
 
   <div class="login-logo">
-    <!-- <ion-icon name="card-outline"></ion-icon> -->
     <img src="./../../../assets/image/msarifi-logo.png">
   </div>
 
   <div class="login-title">
-    <h1>مصاريفي</h1>
     <p>تطبيق إدارة المصاريف الشخصية</p>
   </div>
 
   <div class="login-card">
-
     <div class="form-group">
       <label class="form-label">كلمة المرور</label>
       <div class="input-wrap" [class.error]="showError">
@@ -33,8 +30,6 @@
       </ng-container>
     </button>
 
-    <!-- <p class="hint">كلمة المرور الافتراضية: <strong>1234</strong></p> -->
-
+    <p *ngIf="showHintPassword" class="hint">كلمة المرور الافتراضية: <strong>1234</strong></p>
   </div>
-
 </div>
