@@ -192,4 +192,5 @@ GitHub: https://github.com/mosaabudosh/Msarifi
 
 Software Engineer | Software Developer | Full Stack .NET & Angular
 
-GitHub: https://github.com/mosaabudosh
+- GitHub: [mosaabudosh](https://github.com/mosaabudosh)
+- LinkedIn: [Mosa Abudosh](https://www.linkedin.com/in/mosa-a-abudosh/)
